@@ -2,7 +2,7 @@
 
 ### this repository is part of Daelimi Project
 
-### 본 레포지토리는 대림이 프로젝트(https://github.com/Hod0ri/Daelimi)의 웹 클라이언트용 레포지토리 입니다.
+### 본 레포지토리는 [대림이 프로젝트](https://github.com/Hod0ri/Daelimi)의 웹 클라이언트용 레포지토리 입니다.
 
 #### 커밋 메시지는 `[ 구현 기능 ] (컴포넌트 경로)` 메시지로 올려주세요.
 
