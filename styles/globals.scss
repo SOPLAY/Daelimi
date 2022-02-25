@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+$Daelim-color-data: (
+  blue: #00a6dd,
+  gray: #717171,
+  silver: #a6aaae,
+  black: #08080c,
+  brown: #4d3800,
+  orange: #f7961c,
+  green: #8ec73c,
+);
+
+@each $color, $value in $Daelim-color-data {
+  /* 대림 #{$color} */
+  .bg-duc-#{$color} {
+    background-color: $value;
+  }
+  .text-duc-#{$color} {
+    color: $value;
+  }
+}
