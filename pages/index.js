@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import DarkModeSwitch from "../components/DarkMode";
 import Splash from "../components/Splash";
 
 export default function Home() {
@@ -13,7 +14,12 @@ export default function Home() {
     <Splash />
   ) : (
     <>
-      <h1 className="text-3xl font-bold underline">Hello Daelimi!</h1>
+      <DarkModeSwitch />
+      <div className="flex h-full justify-center items-center ">
+        <h1 className="text-3xl font-bold underline text-duc-green dark:text-white ">
+          해당페이지는 임시페이지 입니다
+        </h1>
+      </div>
     </>
   );
 }

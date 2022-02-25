@@ -1,7 +1,7 @@
 import Image from "next/image";
 export default function Splash() {
   return (
-    <div className="flex justify-center items-center  bg-white h-full ">
+    <div className="flex justify-center items-center h-full bg-white dark:bg-neutral-900">
       <Image
         src="/image/univLogo.png"
         alt="로고이미지"
