@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { useEffect } from "react/cjs/react.production.min";
 export default function DarkModeSwitch() {
   const darkModeSwap = () => {
     localStorage.setItem(
