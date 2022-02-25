@@ -20,8 +20,8 @@ function MyApp({ Component, pageProps }) {
     <Splash />
   ) : (
     <div className=" h-full w-full dark:bg-neutral-900 duration-500 ">
-      <div className=" h-full mx-auto  md:w-2/3 max-w-md box-content ">
-        <Header />
+      <div className=" h-full mx-auto max-w-2xl box-content ">
+        <Header HeaderTitle={"Daelimi"} />
         <Component {...pageProps} />
       </div>
     </div>
