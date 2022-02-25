@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Splash from "../components/Splash";
 import "../styles/globals.scss";
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   return lodingSplash ? (
     <Splash />
   ) : (
-    <div className=" h-full w-full dark:bg-neutral-900 duration-500 ">
+    <div className=" h-full w-full dark:bg-neutral-800 duration-500 ">
       <div className=" h-full mx-auto max-w-2xl box-content ">
         <Header HeaderTitle={"Daelimi"} />
         <Component {...pageProps} />

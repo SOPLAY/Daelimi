@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react/cjs/react.development";
+import { useState } from "react";
 
 import SendSvg from "./svg/sendSvg";
 export default function MessageBox() {
@@ -10,10 +10,10 @@ export default function MessageBox() {
   };
   const [inputValue, setInputValue] = useState("");
   return (
-    <div className=" h-[8%]">
-      <div className="h-full flex px-1">
+    <div className="inpoutMessageBoxContainer h-[10%]">
+      <div className="h-full flex px-1 pb-3">
         <textarea
-          className="rounded-xl w-[85%] md:w-[90%] border-solid border-2 focus:outline-none focus:border-gray-400 px-3 py-1 text-lg dark:text-white md:text-2xl resize-none dark:bg-neutral-900 duration-500"
+          className="rounded-xl w-[85%] md:w-[90%] border-solid border-2 focus:outline-none focus:border-gray-400 px-3 py-1 text-base dark:text-white md:text-2xl resize-none dark:bg-neutral-800 duration-500"
           onKeyPress={(e) => e.code === "Enter" && onClick()}
           placeholder="문의할 메시지를 입력하세요!"
           value={inputValue}
