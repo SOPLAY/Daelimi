@@ -1,5 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { chatLogsAtom } from "../core/atom/atomChatLogs";
+import ChatingMessageBox from "./chatingView/ChatingMessageBox";
 
 export default function ChatingView() {
   let chatlog = useRecoilValue(chatLogsAtom);
@@ -9,14 +10,12 @@ export default function ChatingView() {
       <div className="flex flex-col-reverse overflow-auto h-full">
         <div className="px-5 ">
           {chatlog.map((value, index) => (
-            <div
+            <ChatingMessageBox
               key={index}
-              className={`dark:text-white duration-500 flex ${
-                value.user && "justify-end"
-              }`}
-            >
-              <div className="text-xl">{value.message}</div>
-            </div>
+              user={value.user}
+              message={value.message}
+              time={value.time}
+            />
           ))}
         </div>
       </div>
