@@ -1,14 +1,49 @@
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { chatLogsAtom } from "../core/atom/atomChatLogs";
 
 import SendSvg from "./svg/sendSvg";
 export default function MessageBox() {
-  const onClick = () => {
-    !inputValue
-      ? alert("메시지를 입력해주세요")
-      : console.log(`입력 값 : ${inputValue}`);
+  const [inputValue, setInputValue] = useState("");
+
+  const [chatLog, setChatLog] = useRecoilState(chatLogsAtom);
+  const [apiRes, setApiRes] = useState("");
+  function funcSetChatLog(user = true, message) {
+    setChatLog([
+      ...chatLog,
+      {
+        message: message,
+        user: user,
+        time: new Date().toLocaleTimeString().split(":").slice(0, 2).join(":"),
+      },
+    ]);
+    //만약 서버의 응답일 경우 apiRes를 초기화 한다.
+    user || setApiRes("");
+  }
+  useEffect(() => {
+    apiRes && funcSetChatLog(false, apiRes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRes]);
+  const onClick = async () => {
+    !inputValue && alert("메시지를 입력해주세요");
+
+    //채팅로그 추가
+    funcSetChatLog(true, inputValue);
+
+    let body = {
+      isFilter: "0",
+      message: inputValue,
+    };
+    //api post 요청
+    await axios
+      .post("./api/server", body)
+      //포스트 받은 값을 apiRes의 값으로 지정한다.
+      .then((res) => setApiRes(res.data.answer));
+
     setInputValue("");
   };
-  const [inputValue, setInputValue] = useState("");
+
   return (
     <div className="inpoutMessageBoxContainer h-[10%]">
       <div className="h-full flex px-1 pb-3">
