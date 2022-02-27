@@ -32,13 +32,12 @@ export default function MessageBox() {
       funcSetChatLog(true, inputValue);
 
       let body = userInputFilter(inputValue);
+      setInputValue("");
       //api post 요청
       await axios
         .post("./api/server", body)
         //포스트 받은 값을 apiRes의 값으로 지정한다.
         .then((res) => setApiRes(res.data.answer));
-
-      setInputValue("");
     } else {
       alert("메시지를 입력해주세요");
     }
