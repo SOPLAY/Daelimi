@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { chatLogsAtom } from "../core/atom/atomChatLogs";
+import { userInputFilter } from "../core/filter/userInputFilter";
 
 import SendSvg from "./svg/sendSvg";
 export default function MessageBox() {
@@ -26,22 +27,21 @@ export default function MessageBox() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRes]);
   const onClick = async () => {
-    !inputValue && alert("메시지를 입력해주세요");
+    if (inputValue) {
+      //채팅로그 추가
+      funcSetChatLog(true, inputValue);
 
-    //채팅로그 추가
-    funcSetChatLog(true, inputValue);
+      let body = userInputFilter(inputValue);
+      //api post 요청
+      await axios
+        .post("./api/server", body)
+        //포스트 받은 값을 apiRes의 값으로 지정한다.
+        .then((res) => setApiRes(res.data.answer));
 
-    let body = {
-      isFilter: "0",
-      message: inputValue,
-    };
-    //api post 요청
-    await axios
-      .post("./api/server", body)
-      //포스트 받은 값을 apiRes의 값으로 지정한다.
-      .then((res) => setApiRes(res.data.answer));
-
-    setInputValue("");
+      setInputValue("");
+    } else {
+      alert("메시지를 입력해주세요");
+    }
   };
 
   return (
