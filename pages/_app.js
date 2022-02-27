@@ -4,7 +4,6 @@ import { RecoilRoot } from "recoil";
 import Header from "../components/Header";
 import Splash from "../components/Splash";
 import "../styles/globals.scss";
-
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     localStorage.getItem("theme") === "dark"
@@ -22,7 +21,8 @@ function MyApp({ Component, pageProps }) {
   const headerData = {
     title: "대림이",
     description: "대림대학교에 대한 질문사항을 검색해 보세요!",
-    image: "/favicon.png",
+    image:
+      "https://user-images.githubusercontent.com/40691745/155872679-61892ea2-3ac9-43b3-9a03-2ac259324894.png",
   };
 
   return (
