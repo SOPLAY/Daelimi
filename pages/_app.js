@@ -33,13 +33,21 @@ function MyApp({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-title" content="Daelimi" />
         <meta name="description" content={headerData.description} />
         {["og", "twitter"].map((metaMain, index1) =>
-          ["title", "url", "image", "description"].map((value, index2) => (
-            <meta
-              name={`${metaMain}:${value}`}
-              content={headerData[value]}
-              key={index1 * 10 + index2}
-            />
-          ))
+          ["title", "url", "image", "description"].map((value, index2) =>
+            metaMain === "twitter" ? (
+              <meta
+                name={`${metaMain}:${value}`}
+                content={headerData[value]}
+                key={index1 * 10 + index2}
+              />
+            ) : (
+              <meta
+                property={`${metaMain}:${value}`}
+                content={headerData[value]}
+                key={index1 * 10 + index2}
+              />
+            )
+          )
         )}
       </Head>
       {lodingSplash ? (
