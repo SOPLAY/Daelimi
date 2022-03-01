@@ -8,7 +8,7 @@ export default function ChatingMessageBox({ user, message, time }) {
         </div>
 
         <div
-          className={`text-sm md:text-base md:max-w-md rounded-md p-2 shadow-md ${
+          className={`text-sm md:text-base md:max-w-md rounded-md p-2 shadow-md duration-700 ${
             user
               ? "max-w-[250px] bg-yellow-200 shadow-yellow-500/30"
               : "max-w-[220px] bg-blue-200 shadow-blue-500/30 "

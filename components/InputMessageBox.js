@@ -26,6 +26,7 @@ export default function MessageBox() {
     apiRes && funcSetChatLog(false, apiRes);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRes]);
+
   const onClick = async () => {
     if (inputValue) {
       //채팅로그 추가
@@ -35,9 +36,10 @@ export default function MessageBox() {
       setInputValue("");
       //api post 요청
       await axios
-        .post("./api/server", body)
+        .post(process.env.NEXT_PUBLIC_API_SERVER_URL, body)
         //포스트 받은 값을 apiRes의 값으로 지정한다.
-        .then((res) => setApiRes(res.data.answer));
+        .then((res) => setApiRes(res.data.answer))
+        .catch((e) => setApiRes("서버 연결에 실패했습니다."));
     } else {
       alert("메시지를 입력해주세요");
     }
