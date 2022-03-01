@@ -30,6 +30,8 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Daelimi</title>
         {/* 메타 태그 */}
+        {/* https to http 연결 오류 해결 */}
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="apple-mobile-web-app-title" content="Daelimi" />
         <meta name="description" content={headerData.description} />
         {["og", "twitter"].map((metaMain, index1) =>
