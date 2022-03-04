@@ -26,7 +26,7 @@ export default function ErrorReport() {
         });
 
         const alertState =
-          result.data.answer !== "isOK"
+          result.data.answer === "isOK"
             ? {
                 icon: "success",
                 title: "전송 성공",
