@@ -26,3 +26,9 @@ $Daelim-color-data: (
     color: $value;
   }
 }
+$swal2-contents: (title, content, confirm);
+@each $content in $swal2-contents {
+  .swal2-#{$content} {
+    font-family: "Jua", "sans-serif";
+  }
+}

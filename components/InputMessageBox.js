@@ -1,6 +1,8 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { messgaeApi } from "../core/api/messageApi";
 import { chatLogsAtom } from "../core/atom/atomChatLogs";
 import { userInputFilter } from "../core/filter/userInputFilter";
 
@@ -23,20 +25,31 @@ export default function MessageBox() {
     user || setApiRes("");
   }
   useEffect(() => {
+    if (chatLog.length === 0) {
+      funcSetChatLog(false, "안녕하세요! 대림이 봇 입니다.");
+      setTimeout(() => {
+        funcSetChatLog(false, `오류 혹은 문의사항이 있으시다면 "/문의하기"를 치시면 됩니다!`);
+      }, 1500);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatLog, setChatLog]);
+  useEffect(() => {
     apiRes && funcSetChatLog(false, apiRes);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiRes]);
 
+  const router = useRouter();
   const onClick = async () => {
-    if (inputValue) {
+    if (inputValue.replace(/ /g, "") === "/문의하기") router.push("/error_report");
+    else if (inputValue) {
       //채팅로그 추가
       funcSetChatLog(true, inputValue);
 
       let body = userInputFilter(inputValue);
       setInputValue("");
       //api post 요청
-      await axios
-        .post(process.env.NEXT_PUBLIC_API_SERVER_URL, body)
+
+      await messgaeApi(body)
         //포스트 받은 값을 apiRes의 값으로 지정한다.
         .then((res) => setApiRes(res.data.answer))
         .catch((e) => setApiRes("서버 연결에 실패했습니다."));
