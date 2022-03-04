@@ -63,7 +63,7 @@ export default function ErrorReport() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
       </Head>
-      <Script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" />
+
       <div className="errorReportContainer h-[90%]  ">
         <div className="goToBackButtonContainer w-[15%] " onClick={() => router.back()}>
           <Back className="mx-5 mt-2 w-5 h-5 dark:fill-white" />
@@ -73,7 +73,7 @@ export default function ErrorReport() {
           <p className=" flex justify-center mb-3  dark:text-white text-xl font-Jua">제목</p>
           <div className="inputContainer flex justify-center ">
             <input
-              className="w-[90%] rounded-xl text-lg px-2 py-1 focus:outline-[#00a6dd] border-2 "
+              className="w-[90%] rounded-xl text-lg px-2 py-1 focus:outline-[#00a6dd] border-2 dark:bg-neutral-300 dark:border-none"
               ref={titleRef}
               onChange={(e) => {
                 setInputs({
@@ -85,10 +85,10 @@ export default function ErrorReport() {
             />
           </div>
 
-          <p className="flex justify-center my-3 dark:text-white text-lg font-Jua">설명</p>
+          <p className="flex justify-center my-3 dark:text-white text-lg font-Jua ">설명</p>
           <div className="flex justify-center h-[60%]">
             <textarea
-              className="w-[90%] resize-none rounded-xl text-xl px-2 py-1 focus:outline-[#00a6dd] border-2"
+              className="w-[90%] resize-none rounded-xl text-xl px-2 py-1 focus:outline-[#00a6dd] border-2 dark:bg-neutral-300 dark:border-none"
               ref={messageRef}
               onChange={(e) => {
                 setInputs({

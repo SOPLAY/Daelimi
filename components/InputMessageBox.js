@@ -54,7 +54,12 @@ export default function MessageBox() {
         .then((res) => setApiRes(res.data.answer))
         .catch((e) => setApiRes("서버 연결에 실패했습니다."));
     } else {
-      alert("메시지를 입력해주세요");
+      Swal.fire({
+        icon: "error",
+        title: "메시지를 작성해 주세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 

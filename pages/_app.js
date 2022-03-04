@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 import { RecoilRoot } from "recoil";
 import Header from "../components/Header";
@@ -52,6 +53,7 @@ function MyApp({ Component, pageProps }) {
           )
         )}
       </Head>
+      <Script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" />
       {lodingSplash ? (
         <Splash />
       ) : (
