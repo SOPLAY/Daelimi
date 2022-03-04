@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { messgaeApi } from "../core/api/messageApi";
 import { chatLogsAtom } from "../core/atom/atomChatLogs";
@@ -9,7 +9,7 @@ import { userInputFilter } from "../core/filter/userInputFilter";
 import SendSvg from "./svg/sendSvg";
 export default function MessageBox() {
   const [inputValue, setInputValue] = useState("");
-
+  const inputRef = useRef("");
   const [chatLog, setChatLog] = useRecoilState(chatLogsAtom);
   const [apiRes, setApiRes] = useState("");
   function funcSetChatLog(user = true, message) {
@@ -67,11 +67,15 @@ export default function MessageBox() {
     <div className="inpoutMessageBoxContainer h-[10%]">
       <div className="h-full flex px-1 pb-3">
         <textarea
+          ref={inputRef}
           className="rounded-xl w-[85%] md:w-[90%] border-solid border-2 focus:outline-none focus:border-gray-400 px-3 py-1 text-base dark:text-white md:text-2xl resize-none dark:bg-neutral-800 duration-500"
           onKeyPress={(e) => e.code === "Enter" && onClick()}
           placeholder="문의할 메시지를 입력하세요!"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value.replace(/\n/g, ""))}
+          onChange={(e) => {
+            setInputValue(e.target.value.replace(/\n/g, ""));
+            inputRef.current.focus();
+          }}
         />
         <div className="flex w-[15%] md:w-[10%] justify-center items-center">
           <SendSvg onClick={() => onClick()} />
