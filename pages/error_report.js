@@ -1,9 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Script from "next/script";
 import { useState, useEffect, useRef } from "react";
 
-import { messgaeApi } from "../core/api/messageApi";
+import { issueApi} from "../core/api/messageApi";
 
 import Back from "../public/image/back.svg";
 export default function ErrorReport() {
@@ -20,7 +19,7 @@ export default function ErrorReport() {
       let result = "";
 
       if (inputs.message != "" && inputs.title != "") {
-        result = await messgaeApi({
+        result = await issueApi({
           isFilter: "404",
           message: `${inputs.title}||${inputs.message}`,
         });
