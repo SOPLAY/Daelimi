@@ -1,11 +1,9 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Script from "next/script";
 import { useState, useEffect, useRef } from "react";
 
 import { issueApi } from "../core/api/messageApi";
 
-import Back from "../public/image/back.svg";
 export default function ErrorReport() {
   const router = useRouter();
   const [inputs, setInputs] = useState({ title: "", message: "" });
@@ -50,6 +48,7 @@ export default function ErrorReport() {
         inputs.title == "" ? titleRef.current.focus() : messageRef.current.focus();
       }
       setSendingErrRepoState(false);
+      setInputs({ title: "", message: "" });
       return result;
     };
     sendingErrRepoState && SendErrRepo().then((res) => res && router.back());
@@ -61,6 +60,7 @@ export default function ErrorReport() {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font*/}
         <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
       </Head>
 

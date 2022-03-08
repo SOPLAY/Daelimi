@@ -12,6 +12,7 @@ export default function MessageBox() {
   const inputRef = useRef("");
   const [chatLog, setChatLog] = useRecoilState(chatLogsAtom);
   const [apiRes, setApiRes] = useState("");
+
   function funcSetChatLog(user = true, message) {
     setChatLog([
       ...chatLog,
@@ -21,18 +22,31 @@ export default function MessageBox() {
         time: new Date().toLocaleTimeString().split(":").slice(0, 2).join(":"),
       },
     ]);
+
     //만약 서버의 응답일 경우 apiRes를 초기화 한다.
     user || setApiRes("");
   }
+
   useEffect(() => {
-    if (chatLog.length === 0) {
-      funcSetChatLog(false, "안녕하세요! 대림이 봇 입니다.");
-      setTimeout(() => {
+    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+    const firstChatings = async () => {
+      if (chatLog.length === 0) {
+        funcSetChatLog(false, "안녕하세요! 대림이 봇 입니다.");
+      } else if (chatLog.length === 1) {
+        await sleep(1500);
+        funcSetChatLog(
+          false,
+          `강의실 위치의 경우 "J0312은 어디에 있나요?" 같은 강의실 코드로 작성 부탁드립니다. `
+        );
+      } else if (chatLog.length === 2) {
+        await sleep(1500);
         funcSetChatLog(false, `오류 혹은 문의사항이 있으시다면 "/문의하기"를 치시면 됩니다!`);
-      }, 1500);
-    }
+      }
+    };
+    chatLog.length < 3 && firstChatings();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chatLog, setChatLog]);
+  }, [chatLog]);
+
   useEffect(() => {
     apiRes && funcSetChatLog(false, apiRes);
     // eslint-disable-next-line react-hooks/exhaustive-deps

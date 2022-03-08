@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect, useRef } from "react";
 
-import { issueApi} from "../core/api/messageApi";
+import { issueApi } from "../core/api/messageApi";
 
 import Back from "../public/image/back.svg";
 export default function ErrorReport() {
