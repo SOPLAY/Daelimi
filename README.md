@@ -12,6 +12,7 @@
 
 ```
 NEXT_PUBLIC_API_SERVER_URL = api 주소
+NEXT_PUBLIC_ISSUE_SERVER_URL = issue api 주소
 ```
 
 #### 커밋 메시지는 `[ 구현 기능 ] (컴포넌트 경로)` 메시지로 올려주세요.
